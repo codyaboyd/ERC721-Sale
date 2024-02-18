@@ -620,6 +620,11 @@ abstract contract Ownable is Context {
 contract FF721GILGAMESH is ERC721Enumerable, Ownable {
   using Strings for uint256;
 
+  struct TokenData {
+    uint256 tokenId;
+    string tokenURI;
+  }
+
   string baseURI;
   string public baseExtension = ".json";
   uint256 public cost =50 ether;
@@ -765,5 +770,46 @@ contract FF721GILGAMESH is ERC721Enumerable, Ownable {
   function withdrawFTM(uint256 amount) onlyOwner public {
     payable(owner()).transfer(amount);
     amount = 0;
+  }
+
+  //Inventory Functions
+  function getTotalPages(address _owner) public view returns (uint256) {
+    require(10 > 0, "Items per page must be greater than 0");
+
+    uint256 totalTokens = balanceOf(_owner);
+    if (totalTokens == 0) {
+        return 0;
+    }
+
+    uint256 totalPages = (totalTokens + 10 - 1) / 10;
+    return totalPages;
+  }
+
+  function getPaginatedTokenData(address _owner, uint256 _page)
+        public
+        view
+        returns (TokenData[] memory data)
+    {
+    uint256 tokenCount = balanceOf(_owner);
+    if (tokenCount == 0) {
+        return new TokenData[](0);
+    }
+
+    uint256 startIndex = _page * 10;
+    uint256 endIndex = startIndex + 10;
+    endIndex = (endIndex > tokenCount) ? tokenCount : endIndex;
+
+    if (startIndex >= tokenCount) {
+        return new TokenData[](0);
+    }
+
+    TokenData[] memory dataList = new TokenData[](endIndex - startIndex);
+
+    for (uint256 i = startIndex; i < endIndex; i++) {
+        uint256 tokenId = tokenOfOwnerByIndex(_owner, i);
+        dataList[i - startIndex] = TokenData(tokenId, tokenURI(tokenId));
+    }
+
+    return dataList;
   }
 }
