@@ -60,3 +60,30 @@ Ensure that all external calls, especially those involving token transfers, are 
 ## Conclusion
 
 `FF721GILGAMESH` offers a comprehensive solution for NFT projects looking for a customizable and robust minting and reveal process. Its flexibility and range of features make it suitable for a wide variety of NFT applications.
+
+## Inventory System
+
+The `FF721GILGAMESH` contract introduces an advanced inventory system designed to enhance user interaction with NFTs. This system allows users to view and manage their NFT collections more efficiently, providing a seamless experience for both collectors and creators.
+
+### Features
+
+- **Paginated Viewing**: Users can browse their NFT collection page by page, making it easier to navigate large collections. This feature utilizes the `getPaginatedTokenData` function to display NFTs in manageable segments.
+- **Enhanced Token Data**: Each NFT within the inventory system is associated with comprehensive data, including token ID and metadata URI. This rich information facilitates a deeper connection between the NFT and its holder.
+- **Dynamic Page Calculation**: The `getTotalPages` function dynamically calculates the total number of pages based on the user's collection size and desired items per page. This ensures scalability and ease of access regardless of collection size.
+
+### Implementation
+
+- The inventory system is seamlessly integrated into the `FF721GILGAMESH` contract, leveraging ERC721Enumerable's capabilities for efficient tracking and enumeration of owned tokens.
+- Structured data returned by the inventory system enhances the frontend application's ability to present NFTs in a user-friendly manner, including pre-reveal and post-reveal states.
+
+### Usage
+
+To utilize the inventory system:
+
+1. **Viewing Collections**: Call `getPaginatedTokenData` with the owner's address and page number to retrieve a subset of their NFT collection.
+2. **Calculating Pages**: Use `getTotalPages` to determine the total number of pages available for a given collection, aiding in navigation and UI design.
+
+### Conclusion
+
+The inventory system adds a layer of sophistication to the `FF721GILGAMESH` contract, making it an indispensable tool for projects that prioritize user experience and engagement with NFT collections. Its integration into the contract reflects a commitment to providing a comprehensive and accessible platform for NFT creators and collectors alike.
+
