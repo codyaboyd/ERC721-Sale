@@ -1,5 +1,9 @@
 # FF721GILGAMESH Smart Contract
 
+<p align="center">
+<img src="https://github.com/codyaboyd/ERC721-Sale/assets/57097960/02d65555-08fc-40a4-8346-5af1eb7c7c34">
+</p>
+
 ## Overview
 
 The `FF721GILGAMESH` contract is an ERC721Enumerable token that includes several unique features tailored for creating a mintable, revealable NFT collection. It includes mechanisms for both regular minting with Ethereum and minting with a specified ERC20 token. This contract is designed for projects that require pre-reveal states for their NFTs and offer multiple minting options.
